@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Post a Lost Item - Lost and Found Website</title>
+</head>
+<body>
+<h1>Post a Lost Item</h1>
+
+<form th:action="@{/lostitems/post}" method="post">
+  <label for="description">Description:</label><br>
+  <input type="text" id="description" name="description"><br>
+  <label for="location">Location:</label><br>
+  <input type="text" id="location" name="location"><br>
+  <label for="time">Time:</label><br>
+  <input type="datetime-local" id="time" name="time"><br>
+  <input type="submit" value="Post">
+</form>
+
+<a href="/user-home">Back to Your Listings</a>
+
+</body>
+</html>

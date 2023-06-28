@@ -1,0 +1,59 @@
+<template>
+  <div>
+    <h1>Welcome to the Lost and Found website</h1>
+
+    <nav>
+      <router-link to="/users/login">login</router-link>
+      <router-link to="/users/showRegister">register</router-link>
+      <router-link to="/lostitems/post">Post lostItem information</router-link>
+    </nav>
+
+    <!-- Search form -->
+    <form @submit.prevent="search">
+      <label for="title">Search by title:</label>
+      <input type="text" id="title" v-model="title" required>
+      <button type="submit">Search</button>
+    </form>
+
+    <h2>Latest lostItem information</h2>
+    <ul>
+      <li v-for="item in items" :key="item.id">
+        <router-link :to="'/lostitems/' + item.id">
+          <span>{{ item.description }}</span>
+          <span v-if="item.dateTime">{{ formatDate(item.dateTime) }}</span>
+        </router-link>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+  import axios from 'axios';
+
+  export default {
+    data() {
+      return {
+        title: '',
+        items: []
+      };
+    },
+    methods: {
+      async search() {
+        const response = await axios.get(`/search/title?title=${this.title}`);
+        this.items = response.data;
+      },
+      formatDate(dateTime) {
+        // Format the date as you need
+        return new Date(dateTime).toLocaleString();
+      }
+    },
+    async created() {
+      const response = await axios.get('/');
+      this.items = response.data;
+    }
+  };
+</script>
+
+<style scoped>
+  /* Add your styles here */
+</style>

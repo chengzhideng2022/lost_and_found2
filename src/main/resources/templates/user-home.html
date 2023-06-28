@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>User Dashboard - Lost and Found Website</title>
+</head>
+<body>
+<h1>Welcome, <span th:text="${user.username}"></span>!</h1>
+
+<h2>Your Lost Item Listings</h2>
+<ul>
+  <li th:each="item : ${items}">
+    <span th:text="${item.description}"></span>
+    <a th:href="@{'/lostitems/' + ${item.id}}">View Details</a> |
+    <a th:href="@{'/lostitems/' + ${item.id} + '/delete'}">Delete</a>
+  </li>
+</ul>
+
+<a href="/lostitems/post">Post a Lost Item</a>
+
+</body>
+</html>

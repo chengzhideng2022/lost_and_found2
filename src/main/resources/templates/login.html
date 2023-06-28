@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login - Lost and Found Website</title>
+</head>
+<body>
+<h1>Login</h1>
+
+<form th:action="@{/users/login}" method="post">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+
+  <button type="submit">Login</button>
+</form>
+
+<p>If you don't have an account, <a href="/users/showRegister">click here to register</a>.</p>
+</body>
+</html>

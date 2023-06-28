@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lost Items</title>
+</head>
+<body>
+<h1>Lost Items</h1>
+
+<!-- 表单 -->
+<form th:action="@{/items}" method="post">
+    <label>Title:</label>
+    <input type="text" name="title" required><br>
+
+    <label>Description:</label>
+    <input type="text" name="description" required><br>
+
+    <label>Location:</label>
+    <input type="text" name="location" required><br>
+
+    <label>Date and Time:</label>
+    <input type="datetime-local" name="dateTime" required><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<!-- 列表 -->
+<h2>Lost Items List</h2>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Date and Time</th>
+        <th>User</th>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.title}"></td>
+        <td th:text="${item.description}"></td>
+        <td th:text="${item.location}"></td>
+        <td th:text="${item.dateTime}"></td>
+        <td th:text="${item.user.username}"></td>
+    </tr>
+</table>
+</body>
+</html>
